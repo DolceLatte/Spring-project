@@ -1,10 +1,13 @@
 package me.Kim.Springmvcdemo.Controller;
 
-import jdk.nashorn.internal.parser.JSONParser;
 import me.Kim.Springmvcdemo.Domain.Data;
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.server.ResponseStatusException;
 
 @Controller
 public class DataController {
@@ -15,19 +18,16 @@ public class DataController {
         return key;
     }
 
-    @PostMapping(value = "/post",
-            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping("/post")
     @ResponseBody
-    public Data post(Data data){
-        System.out.println(data);
-        return data;
+    public int post(@RequestBody Data data){
+        return data.getNumber();
     }
 
     @DeleteMapping("/delete")
     @ResponseBody
-    public void delete(){
-        return;
+    public ResponseEntity<String> delete(){
+        return  new ResponseEntity<String>("SUCCESSMESSAGE!!", HttpStatus.OK);
     }
 
 
