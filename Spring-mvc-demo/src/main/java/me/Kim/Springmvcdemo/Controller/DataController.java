@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 public class DataController {
 
@@ -36,7 +38,7 @@ public class DataController {
     }
 
     @GetMapping("events/view")
-    public String view(Model model) {
+    public String view(@Valid Model model) {
         model.addAttribute("data",new Data(1));
         //view를 찾아가는 핸들러
         return "/events/view";
