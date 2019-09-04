@@ -11,21 +11,26 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
+//model에 추가되는 attribute를 세션에 저장
+@SessionAttributes("data")
 public class DataController {
 
     @GetMapping("/get/{key}")
     @CrossOrigin
     @ResponseBody //응답본문에 전송
     public String get(@PathVariable(required = false) String key) {
+
         return key;
     }
+
     @GetMapping("/get2")
     @ResponseBody //응답본문에 전송
-    public String get2(@RequestParam("key") String key,@RequestParam("val") String val) {
-        return key+val;
+    public String get2(@RequestParam("key") String key, @RequestParam("val") String val) {
+
+        return key + val;
     }
 
-    @PostMapping(value = "/post",consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/post", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public Data post(@RequestBody Data data) {
         return data;
@@ -39,14 +44,14 @@ public class DataController {
 
     @GetMapping("events/view")
     public String view(@Valid Model model) {
-        model.addAttribute("data",new Data(1));
+        model.addAttribute("data", new Data(1));
         //view를 찾아가는 핸들러
         return "/events/view";
     }
 
     @PostMapping("/events")
     @ResponseBody
-    public Data getData(@RequestParam("number") int key){
+    public Data getData(@RequestParam("number") int key) {
         Data data = new Data(key);
         return data;
     }
