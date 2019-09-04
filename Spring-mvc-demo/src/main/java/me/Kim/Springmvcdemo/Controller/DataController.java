@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class DataController {
 
     @GetMapping("/get/{key}")
+    @CrossOrigin
     @ResponseBody //응답본문에 전송
     public String get(@PathVariable(required = false) String key) {
         return key;
