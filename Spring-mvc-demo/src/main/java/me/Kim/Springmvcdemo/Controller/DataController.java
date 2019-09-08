@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 
 @Controller
 //model에 추가되는 attribute를 세션에 저장
@@ -43,7 +44,8 @@ public class DataController {
     }
 
     @GetMapping("events/view")
-    public String view(@Valid Model model) {
+    public String view(@Valid Model model, @SessionAttribute LocalDateTime localDateTime) {
+        System.out.println(localDateTime);
         model.addAttribute("data", new Data(1));
         //view를 찾아가는 핸들러
         return "/events/view";
@@ -55,4 +57,7 @@ public class DataController {
         Data data = new Data(key);
         return data;
     }
+
+
+
 }
