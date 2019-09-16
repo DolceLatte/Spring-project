@@ -58,6 +58,4 @@ public class DataController {
         return data;
     }
 
-
-
 }
